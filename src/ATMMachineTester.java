@@ -50,6 +50,19 @@ public class ATMMachineTester {//personal tester
 		sam.depositMoney(00001, 154.31);
 		System.out.println(sam.checkBalance(00001));//should be 7687.83
 		
+		//proving close account works
+		sam.closeAccount (00001);//should fail
+		System.out.println(sam.checkBalance(00001));//should be 7687.83
+		sam.openAccount(00001,6.0);//should fail
+		System.out.println(sam.checkBalance(00001));//should be 7687.83
+		sam.withdrawMoney(00001,7687.83);
+		System.out.println(sam.checkBalance(00001));//should be 0.0
+		sam.closeAccount (00001);//should work
+		System.out.println(sam.checkBalance(00001));//should be 0.0
+		sam.depositMoney(00001, 1.0);//should fail
+		System.out.println(sam.checkBalance(00001));//should be 0.0
+		sam.openAccount(00001,6.0);//should work IF the account has been closed
+		System.out.println(sam.checkBalance(00001));//should be 6.0 IF the account was properly closed
 		
 	}
 
